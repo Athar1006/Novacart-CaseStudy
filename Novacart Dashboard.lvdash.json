@@ -1,0 +1,483 @@
+{
+  "datasets": [
+    {
+      "name": "a10d8f17",
+      "displayName": "orders_information",
+      "config": {
+        "version": "1.1",
+        "source": "db_novacart.gold_schema.orders_information",
+        "dimensions": [
+          {
+            "name": "order_id",
+            "expr": "source.order_id",
+            "displayName": "Order Id"
+          },
+          {
+            "name": "customer_id",
+            "expr": "source.customer_id",
+            "displayName": "Customer Id"
+          },
+          {
+            "name": "product_id",
+            "expr": "source.product_id",
+            "displayName": "Product Id"
+          },
+          {
+            "name": "product_name",
+            "expr": "source.product_name",
+            "displayName": "Product Name"
+          },
+          {
+            "name": "category",
+            "expr": "source.category",
+            "displayName": "Category"
+          },
+          {
+            "name": "product_price",
+            "expr": "source.product_price",
+            "displayName": "Product Price"
+          },
+          {
+            "name": "order_status",
+            "expr": "source.order_status",
+            "displayName": "Order Status"
+          },
+          {
+            "name": "order_amount",
+            "expr": "source.order_amount",
+            "displayName": "Order Amount"
+          },
+          {
+            "name": "payment_id",
+            "expr": "source.payment_id",
+            "displayName": "Payment Id"
+          },
+          {
+            "name": "payment_status",
+            "expr": "source.payment_status",
+            "displayName": "Payment Status"
+          },
+          {
+            "name": "paid_amount",
+            "expr": "source.paid_amount",
+            "displayName": "Paid Amount"
+          },
+          {
+            "name": "order_date",
+            "expr": "source.order_date",
+            "displayName": "Order Date"
+          },
+          {
+            "name": "order_month",
+            "expr": "source.order_month",
+            "displayName": "Order Month"
+          },
+          {
+            "name": "order_year",
+            "expr": "source.order_year",
+            "displayName": "Order Year"
+          },
+          {
+            "name": "gold_update_ts",
+            "expr": "source.gold_update_ts",
+            "displayName": "Gold Update Ts"
+          },
+          {
+            "name": "payment_completion_ratio",
+            "expr": "source.payment_completion_ratio",
+            "displayName": "Payment Completion Ratio"
+          },
+          {
+            "name": "payment_state",
+            "expr": "source.payment_state",
+            "displayName": "Payment State"
+          },
+          {
+            "name": "gold_updated_date",
+            "expr": "source.gold_updated_date",
+            "displayName": "Gold Updated Date"
+          },
+          {
+            "name": "gold_run_id",
+            "expr": "source.gold_run_id",
+            "displayName": "Gold Run Id"
+          }
+        ],
+        "measures": [
+          {
+            "name": "count",
+            "expr": "COUNT(*)",
+            "comment": "Represents the total number of rows in the dataset. Use this measure to count all",
+            "displayName": "Count"
+          }
+        ]
+      }
+    },
+    {
+      "name": "c7d4f5aa",
+      "displayName": "category_performance",
+      "config": {
+        "version": "1.1",
+        "source": "db_novacart.gold_schema.category_performance",
+        "dimensions": [
+          {
+            "name": "category",
+            "expr": "source.category",
+            "displayName": "Category"
+          },
+          {
+            "name": "total_orders",
+            "expr": "source.total_orders",
+            "displayName": "Total Orders"
+          },
+          {
+            "name": "Gross_Merchandise_Value",
+            "expr": "source.Gross_Merchandise_Value",
+            "displayName": "Gross Merchandise Value"
+          },
+          {
+            "name": "Total_Paid_Amount",
+            "expr": "source.Total_Paid_Amount",
+            "displayName": "Total Paid Amount"
+          },
+          {
+            "name": "Average_Payment_Completion_Ratio",
+            "expr": "source.Average_Payment_Completion_Ratio",
+            "displayName": "Average Payment Completion Ratio"
+          },
+          {
+            "name": "Payment_Failure_Rate",
+            "expr": "source.Payment_Failure_Rate",
+            "displayName": "Payment Failure Rate"
+          }
+        ],
+        "measures": [
+          {
+            "name": "count",
+            "expr": "COUNT(*)",
+            "comment": "Represents the total number of rows in the dataset. Use this measure to count all",
+            "displayName": "Count"
+          }
+        ]
+      }
+    }
+  ],
+  "pages": [
+    {
+      "name": "d8bb66ac",
+      "displayName": "Page-1",
+      "layout": [
+        {
+          "widget": {
+            "name": "471d83eb",
+            "multilineTextboxSpec": {
+              "lines": [
+                "### <span style=\"text-align:center;display:block;\"><span style=\"font-family: Courier New;\">Novacart Dashboard</span></span>"
+              ]
+            }
+          },
+          "position": {
+            "x": 0,
+            "y": 0,
+            "width": 12,
+            "height": 1
+          }
+        },
+        {
+          "widget": {
+            "name": "3ae6caca",
+            "queries": [
+              {
+                "name": "main_query",
+                "query": {
+                  "datasetName": "a10d8f17",
+                  "fields": [
+                    {
+                      "name": "category",
+                      "expression": "`category`"
+                    },
+                    {
+                      "name": "count(*)",
+                      "expression": "COUNT(`*`)"
+                    }
+                  ],
+                  "disaggregated": false
+                }
+              }
+            ],
+            "spec": {
+              "version": 3,
+              "frame": {
+                "showTitle": false
+              },
+              "widgetType": "bar",
+              "encodings": {
+                "x": {
+                  "fieldName": "category",
+                  "scale": {
+                    "type": "categorical",
+                    "sort": {
+                      "by": "y-reversed"
+                    }
+                  }
+                },
+                "y": {
+                  "fieldName": "count(*)",
+                  "scale": {
+                    "type": "quantitative"
+                  }
+                },
+                "color": {
+                  "fieldName": "category",
+                  "scale": {
+                    "type": "categorical"
+                  }
+                },
+                "label": {
+                  "show": true
+                }
+              }
+            }
+          },
+          "position": {
+            "x": 0,
+            "y": 1,
+            "width": 6,
+            "height": 5
+          }
+        },
+        {
+          "widget": {
+            "name": "total-orders",
+            "queries": [
+              {
+                "name": "main_query",
+                "query": {
+                  "datasetName": "a10d8f17",
+                  "fields": [
+                    {
+                      "name": "count(*)",
+                      "expression": "COUNT(`*`)"
+                    }
+                  ],
+                  "disaggregated": false
+                }
+              }
+            ],
+            "spec": {
+              "version": 2,
+              "frame": {
+                "showTitle": true,
+                "title": "Total Orders"
+              },
+              "widgetType": "counter",
+              "encodings": {
+                "value": {
+                  "fieldName": "count(*)"
+                }
+              }
+            }
+          },
+          "position": {
+            "x": 6,
+            "y": 1,
+            "width": 6,
+            "height": 1
+          }
+        },
+        {
+          "widget": {
+            "name": "74818ad8",
+            "queries": [
+              {
+                "name": "main_query",
+                "query": {
+                  "datasetName": "a10d8f17",
+                  "fields": [
+                    {
+                      "name": "sum(paid_amount)",
+                      "expression": "SUM(`paid_amount`)"
+                    }
+                  ],
+                  "disaggregated": false
+                }
+              }
+            ],
+            "spec": {
+              "version": 2,
+              "widgetType": "counter",
+              "encodings": {
+                "value": {
+                  "fieldName": "sum(paid_amount)"
+                }
+              }
+            }
+          },
+          "position": {
+            "x": 6,
+            "y": 2,
+            "width": 6,
+            "height": 4
+          }
+        },
+        {
+          "widget": {
+            "name": "fbf0f4d4",
+            "queries": [
+              {
+                "name": "main_query",
+                "query": {
+                  "datasetName": "a10d8f17",
+                  "fields": [
+                    {
+                      "name": "sum(order_amount)",
+                      "expression": "SUM(`order_amount`)"
+                    }
+                  ],
+                  "disaggregated": false
+                }
+              }
+            ],
+            "spec": {
+              "version": 2,
+              "widgetType": "counter",
+              "encodings": {
+                "value": {
+                  "fieldName": "sum(order_amount)"
+                }
+              }
+            }
+          },
+          "position": {
+            "x": 6,
+            "y": 6,
+            "width": 6,
+            "height": 6
+          }
+        },
+        {
+          "widget": {
+            "name": "9fe63304",
+            "queries": [
+              {
+                "name": "main_query",
+                "query": {
+                  "datasetName": "a10d8f17",
+                  "fields": [
+                    {
+                      "name": "avg(payment_completion_ratio)",
+                      "expression": "AVG(`payment_completion_ratio`)"
+                    },
+                    {
+                      "name": "category",
+                      "expression": "`category`"
+                    }
+                  ],
+                  "disaggregated": false
+                }
+              }
+            ],
+            "spec": {
+              "version": 3,
+              "widgetType": "pie",
+              "encodings": {
+                "angle": {
+                  "fieldName": "avg(payment_completion_ratio)",
+                  "scale": {
+                    "type": "quantitative"
+                  }
+                },
+                "color": {
+                  "fieldName": "category",
+                  "scale": {
+                    "type": "categorical"
+                  }
+                },
+                "label": {
+                  "show": true
+                }
+              }
+            }
+          },
+          "position": {
+            "x": 0,
+            "y": 6,
+            "width": 6,
+            "height": 6
+          }
+        },
+        {
+          "widget": {
+            "name": "0a28eed3",
+            "queries": [
+              {
+                "name": "main_query",
+                "query": {
+                  "datasetName": "a10d8f17",
+                  "fields": [
+                    {
+                      "name": "category",
+                      "expression": "`category`"
+                    },
+                    {
+                      "name": "sum(order_amount)",
+                      "expression": "SUM(`order_amount`)"
+                    }
+                  ],
+                  "disaggregated": false
+                }
+              }
+            ],
+            "spec": {
+              "version": 3,
+              "frame": {
+                "showTitle": false
+              },
+              "widgetType": "bar",
+              "encodings": {
+                "x": {
+                  "fieldName": "category",
+                  "scale": {
+                    "type": "categorical",
+                    "sort": {
+                      "by": "y-reversed"
+                    }
+                  }
+                },
+                "y": {
+                  "fieldName": "sum(order_amount)",
+                  "scale": {
+                    "type": "quantitative"
+                  }
+                },
+                "color": {
+                  "fieldName": "category",
+                  "scale": {
+                    "type": "categorical"
+                  }
+                },
+                "label": {
+                  "show": true
+                }
+              }
+            }
+          },
+          "position": {
+            "x": 0,
+            "y": 12,
+            "width": 6,
+            "height": 6
+          }
+        }
+      ],
+      "pageType": "PAGE_TYPE_CANVAS",
+      "layoutVersion": "GRID_V1"
+    }
+  ],
+  "uiSettings": {
+    "theme": {
+      "widgetHeaderAlignment": "ALIGNMENT_UNSPECIFIED"
+    },
+    "applyModeEnabled": false
+  }
+}
